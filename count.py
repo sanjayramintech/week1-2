@@ -2,8 +2,15 @@ import tiktoken
 
 filename = input("Enter file name: ")
 
-with open(filename, "r", encoding="utf-8") as f:
-    text = f.read()
+#introducing exception handling for file not found 
+#----------------------------------------------------------
+try:
+    with open(filename, "r", encoding="utf-8") as f:
+        text = f.read()
+except FileNotFoundError:
+    print(f"File '{filename}' not found,pls check the file name and re-enter it!")
+    exit()
+#----------------------------------------------------------
 
 encoding = tiktoken.get_encoding("cl100k_base")
 
